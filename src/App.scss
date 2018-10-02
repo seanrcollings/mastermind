@@ -30,3 +30,13 @@
     transform: rotate(360deg);
   }
 }
+
+.drag {
+  height:400px;
+  width:200px; 
+  background-color:red;
+}
+
+.drag:hover {
+  cursor: pointer;
+}
