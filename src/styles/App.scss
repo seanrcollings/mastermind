@@ -1,0 +1,35 @@
+.app {
+  
+  display: grid;
+  grid-template-columns: [s sidebar-s] .2fr [sidebar-e game-s] 1fr 
+    [game-e pegboard-s] .3fr [pegboard-e e];
+  grid-template-rows: 1fr;
+  height: 100vh;
+
+  &__sidebar {
+    background-color: black;
+    grid-column: sidebar-s/sidebar-e
+  }
+
+  &__game {
+    background-color: blueviolet;
+    grid-column: game-s/game-e
+  }
+
+  &__pegboard {
+    background-color: powderblue;
+    grid-column: pegboard-s/pegboard-e
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

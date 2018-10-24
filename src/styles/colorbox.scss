@@ -1,0 +1,21 @@
+.sidebar-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.colorbox-wrapper > * {
+    height: 100px;
+    width: 100px;
+    display: block;
+    transition: box-shadow .6s ease;
+    
+    &:hover {
+        cursor: pointer;
+        box-shadow: 10px 10px 30px #353535;
+    }
+
+    &:active {
+        // height: 125px;
+        // width: 125px;
+    }
+}

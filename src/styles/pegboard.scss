@@ -1,0 +1,43 @@
+.pegboard {
+    display: grid;
+    grid-template-columns: [white-s] 1fr [white-e black-s] 1fr [black-e];
+ 
+    &__title {
+        color: grey;
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    &__white {
+        grid-column: white-s/white-e
+    }
+
+    &__black {
+        grid-column: black-s/black-e
+    }
+} 
+
+
+.pegrow {
+    &__peg {
+        display: inline-block; 
+        margin: 10px;
+        border-radius: 3px;
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.peg {
+    &-empty {
+        box-shadow: 1px 1px 5px #555 inset;
+    }
+    
+    &-white {
+        background-color: white;
+    }
+    
+    &-black {
+        background-color: black
+    }
+}
