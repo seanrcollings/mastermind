@@ -10,10 +10,10 @@ class Pegrow extends Component {
         <div className = 'pegrow__peg peg-empty'>
 
         </div>
-        <div className = 'pegrow__peg peg-white'>
+        <div className = 'pegrow__peg peg-empty'>
 
         </div>
-        <div className = 'pegrow__peg peg-black'>
+        <div className = 'pegrow__peg peg-empty'>
 
         </div>
       </div>
