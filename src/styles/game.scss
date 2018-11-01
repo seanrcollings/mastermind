@@ -1,5 +1,4 @@
-.app {
-  
+.game {
   display: grid;
   grid-template-columns: [s sidebar-s] .2fr [sidebar-e game-s] 1fr 
     [game-e pegboard-s] .3fr [pegboard-e e];

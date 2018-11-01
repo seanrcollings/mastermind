@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 class GameInput extends Component {
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
-  }
-
   render() {
     return (
       <div>

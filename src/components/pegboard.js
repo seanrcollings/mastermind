@@ -3,6 +3,7 @@ import Pegrow from './pegrow';
 
 class Pegboard extends Component {
   render() {
+    console.log(this.props)
     return (
       <div className = 'pegboard'>
         <div className = 'pegboard__white'>
