@@ -42,7 +42,7 @@ class Sidebar extends Component {
     return (
       <div className='sidebar-wrapper'>
         <div className='colorbox-wrapper'>
-          {this.createBoxes()}
+          {/* {this.createBoxes()} */}
         </div>
       </div>
     );
