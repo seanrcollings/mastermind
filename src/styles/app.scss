@@ -1,0 +1,23 @@
+.app {
+  display: grid;
+  grid-template-columns: [s sidebar-s] .1fr [sidebar-e game-s] 1fr [game-e e];
+  grid-template-rows: 1fr;
+  height: 100vh;
+
+  &__sidebar {
+    background-color: black;
+    grid-column: sidebar-s/sidebar-e
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
