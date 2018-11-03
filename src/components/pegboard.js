@@ -4,30 +4,31 @@ import Peg from './peg';
 class Pegboard extends Component {
 
   renderBlackPegs = () => {
-    let blackPegs = [];
-    for (let i = 0; i < this.props.turn; i++){
-      for (let i = 0; i < this.props.blackPegs; i++) {
-        blackPegs.push(<Peg peg = {'blackpeg'}/>)
-      }
-    }
-    while (blackPegs.length % 4 !== 0) {
-      blackPegs.push(<Peg peg = {'empty'}/>)
-    } 
-    return blackPegs
+    return this.modifiedResults().map(result => {
+      let blackPegs = [];
+      this.addPegs(blackPegs, result.blackPegs, 'blackpeg')
+      this.addPegs(blackPegs, 4 - result.blackPegs, 'empty')
+      return blackPegs;
+    })
   }
 
   renderWhitePegs = () => {
-    let whitePegs = [];
-    for (let i = 0; i < this.props.turn; i++){
-      for (let i = 0; i < this.props.whitePegs; i++) {
-        whitePegs.push(<Peg peg = {'whitepeg'}/>)
-      }
+    return this.modifiedResults().map(result => {
+      let whitePegs = [];
+      this.addPegs(whitePegs, result.whitePegs, 'whitepeg')
+      this.addPegs(whitePegs, 4 - result.whitePegs, 'empty')
+      return whitePegs;
+    })
+  }
+
+  addPegs = (pegsArray, numPegs, color) => {
+    for (let i = 0; i < numPegs; i++) {
+      pegsArray.push(<Peg key = {`${i}${color}`} peg={color}/>)
     }
-    while (whitePegs.length % 4 !== 0 && whitePegs.length !== 0) {
-      whitePegs.push(<Peg peg = {'empty'}/>)
-    }
-    console.log(whitePegs)
-    return whitePegs
+  }
+
+  modifiedResults = () => {
+    return [...this.props.results, {whitePegs: 0, blackPegs: 0}]
   }
   
   render() {

@@ -3,30 +3,30 @@ import GameBoard from './gameboard';
 import Pegboard from './pegboard';
 
 class Game extends Component {
+  defaultGameBoard = {
+    selectedValue1: 'red',
+    selectedValue2: 'red',
+    selectedValue3: 'red',
+    selectedValue4: 'red',
+  }
+
   constructor(props) {
     super(props);
     
     this.state = {
-      turn : 1,
-      blackPegs : 0,
-      whitePegs : 0,
-      guess: {
-        selectedValue1: 'red',
-        selectedValue2: 'red',
-        selectedValue3: 'red',
-        selectedValue4: 'red',
-      },
       answer : {
         answerValue1: 'red',
         answerValue2: 'blue', 
         answerValue3: 'green', 
         answerValue4: 'red'
       },
+      gameBoards: [this.defaultGameBoard],
+      results: []
     }
   }
 
-  nextTurn = (blackPegs, whitePegs) => {
-    this.setState({blackPegs, whitePegs, turn: this.state.turn + 1})
+  nextTurn = () => {
+    this.setState({gameBoards: [...this.state.gameBoards, this.defaultGameBoard]})
   }
  
   genAnswer = () => {
@@ -38,45 +38,66 @@ class Game extends Component {
     return answers;
   }
   
-  checkAnswer = (playerGuess) => {
+  checkAnswer = () => {
     const answer =  Object.values(this.state.answer);
-    const guess = Object.values(playerGuess);
-    var blackPegs = 0;
-    var whitePegs = 0;
-    for (var index = 0; index < guess.length; index++) {
+    const guess = Object.values(this.state.gameBoards[this.state.gameBoards.length-1]);
+    let blackPegs = 0;
+    let whitePegs = 0;
+    for (let index = 0; index < guess.length; index++) {
       if (answer[index] === guess[index]) {
         blackPegs++;
-      } 
-      else if (answer.indexOf(guess[index]) >= 0 && answer[index] !== guess[index]) {
+      }
+      // Fix logic for calculation number of white pegs 
+      else if (answer.indexOf(guess[index]) >= 0) {
           whitePegs++;
       }
     }
-    this.setState({blackPegs, whitePegs}, 
+    this.setState({results: [...this.state.results, {blackPegs, whitePegs}]}, 
       () => {
-        if (this.state.blackPegs >= 4) {
+        if (blackPegs >= 4) {
           alert('You won!')
         } else {
-          this.nextTurn(this.state.blackPegs, this.state.whitePegs)
+          this.nextTurn()
         }
       }
     )
   }
+
+  updateValue = (key, value) => {
+    let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1] };
+    newActiveBoard[key] = value;
+    let newBoards = [...this.state.gameBoards];
+    newBoards[newBoards.length-1] = newActiveBoard;
+    this.setState({gameBoards: newBoards});    
+  }
   
+  /* RENDERERS */
+
+  renderGameBoards = () => {
+    return this.state.gameBoards.map((boardAnswer, i) => {
+      return (
+        <GameBoard
+          key={i} 
+          selectedValues={boardAnswer} 
+          active={i === this.state.gameBoards.length - 1} 
+          updateValue={this.updateValue}
+        />
+      )
+    })  
+  } 
+
   render() {
     console.log(this.state)
     return (
       <div className="game">
         <div className="game__colorboard">
-          <GameBoard 
-            turn = {this.state.turn} 
-            callback = {this.checkAnswer}
-          />
+          {this.renderGameBoards()}
+          <button onClick = {this.checkAnswer}>Submit</button>
         </div>
+
         <div className="game__pegboard">
           <Pegboard 
-            turn = {this.state.turn}
-            blackPegs = {this.state.blackPegs}
-            whitePegs = {this.state.whitePegs}
+            results={this.state.results}
           />
           </div>
       </div>
