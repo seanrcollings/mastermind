@@ -3,6 +3,8 @@ import Peg from './peg';
 
 class Pegboard extends Component {
 
+  /* RENDERERS */
+  
   renderBlackPegs = () => {
     return this.modifiedResults().map(result => {
       let blackPegs = [];
@@ -20,6 +22,8 @@ class Pegboard extends Component {
       return whitePegs;
     })
   }
+
+  /* HELPERS */
 
   addPegs = (pegsArray, numPegs, color) => {
     for (let i = 0; i < numPegs; i++) {

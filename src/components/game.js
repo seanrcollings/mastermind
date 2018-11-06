@@ -15,41 +15,63 @@ class Game extends Component {
     
     this.state = {
       answer : {
-        answerValue1: 'red',
-        answerValue2: 'blue', 
-        answerValue3: 'green', 
-        answerValue4: 'red'
-      },
+        answerValue1: 'blue',
+        answerValue2: 'orange', 
+        answerValue3: 'blue', 
+        answerValue4: 'yellow'
+      }
+      ,
       gameBoards: [this.defaultGameBoard],
       results: []
     }
   }
+  
+  /* HELPERS */
 
   nextTurn = () => {
     this.setState({gameBoards: [...this.state.gameBoards, this.defaultGameBoard]})
   }
- 
+
+  updateValue = (key, value) => {
+    let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1] };
+    newActiveBoard[key] = value;
+    let newBoards = [...this.state.gameBoards];
+    newBoards[newBoards.length-1] = newActiveBoard;
+    this.setState({gameBoards: newBoards});    
+  }
+
   genAnswer = () => {
     let colorList = ['red', 'green', 'orange', 'purple', 'blue', 'yellow'] 
     let answers = {answerValue1: null, answerValue2: null, answerValue3: null, answerValue4: null}
     for (var key in answers) {
       answers[key] = colorList[Math.floor(Math.random() * 6)];
     }
+    console.log(answers)
     return answers;
   }
   
   checkAnswer = () => {
     const answer =  Object.values(this.state.answer);
     const guess = Object.values(this.state.gameBoards[this.state.gameBoards.length-1]);
+    let pegs = [null, null, null, null]
     let blackPegs = 0;
     let whitePegs = 0;
+    
+    // Adds blackPegs
     for (let index = 0; index < guess.length; index++) {
       if (answer[index] === guess[index]) {
+        pegs[index] = 'black';
         blackPegs++;
       }
-      // Fix logic for calculation number of white pegs 
-      else if (answer.indexOf(guess[index]) >= 0) {
+    }
+    // Adds whitePegs
+    for (let guessindex = 0; guessindex < guess.length; guessindex++) {
+      for (let answerindex = 0; answerindex < 4; answerindex++) {
+        if (answer[answerindex] === guess[guessindex] && pegs[answerindex] === null) {
           whitePegs++;
+          pegs[answerindex] = 'white'
+          break;
+        }
       }
     }
     this.setState({results: [...this.state.results, {blackPegs, whitePegs}]}, 
@@ -61,14 +83,6 @@ class Game extends Component {
         }
       }
     )
-  }
-
-  updateValue = (key, value) => {
-    let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1] };
-    newActiveBoard[key] = value;
-    let newBoards = [...this.state.gameBoards];
-    newBoards[newBoards.length-1] = newActiveBoard;
-    this.setState({gameBoards: newBoards});    
   }
   
   /* RENDERERS */
@@ -87,7 +101,6 @@ class Game extends Component {
   } 
 
   render() {
-    console.log(this.state)
     return (
       <div className="game">
         <div className="game__colorboard">

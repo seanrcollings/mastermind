@@ -6,7 +6,8 @@
 
     &__colorboard {
         background-color: blueviolet;
-        grid-column: colorboard-s/colorboard-e
+        grid-column: colorboard-s/colorboard-e;
+        overflow: auto;
       }
     
       &__pegboard {
