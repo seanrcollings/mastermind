@@ -1,8 +1,13 @@
 .game {
     display: grid;
-    grid-template-columns: [s colorboard-s] 1fr [colorboard-e pegboard-s] .3fr [pegboard-e e];
+    grid-template-columns: [s sidebar-s] .1fr [sidebar-e colorboard-s] 1fr [colorboard-e pegboard-s] .3fr [pegboard-e e];
     grid-template-rows: 1fr;
     height: 100vh;
+
+    &__sidebar {
+      background-color: black;
+      grid-column: sidebar-s/sidebar-e;
+    }
 
     &__colorboard {
         background-color: blueviolet;
@@ -10,8 +15,20 @@
         overflow: auto;
       }
     
-      &__pegboard {
-        background-color: powderblue;
-        grid-column: pegboard-s/pegboard-e
-      }
+    &__pegboard {
+      background-color: powderblue;
+      grid-column: pegboard-s/pegboard-e
+    }
+}
+
+
+
+.emptybox {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  margin: 40px;
+  display: inline-block;
+  margin-left: 120px;
+  z-index: 1000;
 }

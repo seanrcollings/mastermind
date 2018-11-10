@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import GameBoard from './gameboard';
 import Pegboard from './pegboard';
+import Sidebar from './sidebar';
 
 class Game extends Component {
   defaultGameBoard = {
-    selectedValue1: 'red',
-    selectedValue2: 'red',
-    selectedValue3: 'red',
-    selectedValue4: 'red',
+    selectedValue1: 'empty',
+    selectedValue2: 'empty',
+    selectedValue3: 'empty',
+    selectedValue4: 'empty',
   }
 
   constructor(props) {
@@ -19,8 +20,7 @@ class Game extends Component {
         answerValue2: 'orange', 
         answerValue3: 'blue', 
         answerValue4: 'yellow'
-      }
-      ,
+      },
       gameBoards: [this.defaultGameBoard],
       results: []
     }
@@ -84,7 +84,7 @@ class Game extends Component {
       }
     )
   }
-  
+
   /* RENDERERS */
 
   renderGameBoards = () => {
@@ -103,6 +103,11 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
+
+        <div className='game__sidebar'>
+          <Sidebar callback = {this.checkDistance}/>
+        </div>
+
         <div className="game__colorboard">
           {this.renderGameBoards()}
           <button onClick = {this.checkAnswer}>Submit</button>

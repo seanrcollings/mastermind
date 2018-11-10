@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ColorBox from './colorBox';
+import EmptyBox from './emptyBox';
 
 
 class Sidebar extends Component {
@@ -33,18 +34,20 @@ class Sidebar extends Component {
     ]
 
     return colorOptions.map(box =>  {
-      return <ColorBox name={box.name} color={box.color}/>
+      return <ColorBox  
+          key={box.name} 
+          name={box.name} 
+          id={box.name}
+          color={box.color}
+        />
     })
   }
 
-
   render() {
     return (
-      <div className='sidebar-wrapper'>
         <div className='colorbox-wrapper'>
-          {/* {this.createBoxes()} */}
+          {this.createBoxes()}
         </div>
-      </div>
     );
   }
 }
