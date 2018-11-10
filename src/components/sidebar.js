@@ -39,6 +39,7 @@ class Sidebar extends Component {
           name={box.name} 
           id={box.name}
           color={box.color}
+          callback={this.props.callback}
         />
     })
   }

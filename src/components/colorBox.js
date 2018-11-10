@@ -15,9 +15,9 @@ class ColorBox extends Component {
   onStop = (event, data) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(this.colorBox)
-    console.log(this.colorBox.current.getBoundingClientRect())
-    this.setState({position: {x: data.x, y:data.y}})
+    const focusedBox = this.colorBox.current.getBoundingClientRect()
+    // this.setState({position: {x: data.x, y:data.y}})
+    this.props.callback(focusedBox.x, focusedBox.y, this.props.color)
   };
   
   render() {

@@ -22,7 +22,8 @@ class Game extends Component {
         answerValue4: 'yellow'
       },
       gameBoards: [this.defaultGameBoard],
-      results: []
+      results: [],
+      focused: {x: null, y: null, color: 'white'}
     }
   }
   
@@ -95,17 +96,23 @@ class Game extends Component {
           selectedValues={boardAnswer} 
           active={i === this.state.gameBoards.length - 1} 
           updateValue={this.updateValue}
+          focused={this.state.focused}
         />
       )
     })  
   } 
+
+  handleFocus = (x, y, color) => {
+    console.log(x, y)
+    this.setState({focused: {x, y, color}})
+  }
 
   render() {
     return (
       <div className="game">
 
         <div className='game__sidebar'>
-          <Sidebar callback = {this.checkDistance}/>
+          <Sidebar callback = {this.handleFocus}/>
         </div>
 
         <div className="game__colorboard">
