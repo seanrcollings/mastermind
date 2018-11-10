@@ -9,11 +9,11 @@ class Sidebar extends Component {
     const colorOptions = [
         {
           name: 'blue',
-          color: '#0000FF'
+          color: 'blue'
         },
         {
           name: 'red',
-          color: '#ff0000'
+          color: 'red'
         },
         {
           name: 'green',
@@ -31,6 +31,10 @@ class Sidebar extends Component {
           name: 'purple',
           color: 'purple'
         },
+        {
+          name: 'yellow',
+          color: 'yellow'
+        }
     ]
 
     return colorOptions.map(box =>  {

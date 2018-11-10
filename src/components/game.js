@@ -5,10 +5,16 @@ import Sidebar from './sidebar';
 
 class Game extends Component {
   defaultGameBoard = {
-    selectedValue1: 'empty',
-    selectedValue2: 'empty',
-    selectedValue3: 'empty',
-    selectedValue4: 'empty',
+    selectedValue1: 'white',
+    selectedValue2: 'white',
+    selectedValue3: 'white',
+    selectedValue4: 'white',
+  }
+
+  defaultFocus = {
+    x: null, 
+    y: null, 
+    color: null
   }
 
   constructor(props) {
@@ -23,7 +29,7 @@ class Game extends Component {
       },
       gameBoards: [this.defaultGameBoard],
       results: [],
-      focused: {x: null, y: null, color: 'white'}
+      focused: this.defaultFocus
     }
   }
   
@@ -38,7 +44,7 @@ class Game extends Component {
     newActiveBoard[key] = value;
     let newBoards = [...this.state.gameBoards];
     newBoards[newBoards.length-1] = newActiveBoard;
-    this.setState({gameBoards: newBoards});    
+    this.setState({gameBoards: newBoards, focused: this.defaultFocus},() => {console.log(this.state)});
   }
 
   genAnswer = () => {
