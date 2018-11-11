@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ColorBox from './colorBox';
-import EmptyBox from './emptyBox';
 
 
 class Sidebar extends Component {
@@ -43,7 +42,9 @@ class Sidebar extends Component {
           name={box.name} 
           id={box.name}
           color={box.color}
+          width={'100px'}
           callback={this.props.callback}
+          sidebar={true}
         />
     })
   }

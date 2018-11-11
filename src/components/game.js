@@ -11,9 +11,9 @@ class Game extends Component {
     selectedValue4: 'white',
   }
 
-  defaultFocus = {
-    x: null, 
-    y: null, 
+  defaultDraggable = {
+    x: -100000, 
+    y: -100000, 
     color: null
   }
 
@@ -29,7 +29,7 @@ class Game extends Component {
       },
       gameBoards: [this.defaultGameBoard],
       results: [],
-      focused: this.defaultFocus
+      activeDraggable: this.defaultDraggable
     }
   }
   
@@ -40,11 +40,11 @@ class Game extends Component {
   }
 
   updateValue = (key, value) => {
-    let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1] };
+    let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1]};
     newActiveBoard[key] = value;
     let newBoards = [...this.state.gameBoards];
     newBoards[newBoards.length-1] = newActiveBoard;
-    this.setState({gameBoards: newBoards, focused: this.defaultFocus},() => {console.log(this.state)});
+    this.setState({gameBoards: newBoards, activeDraggable: this.defaultDraggable});
   }
 
   genAnswer = () => {
@@ -99,10 +99,10 @@ class Game extends Component {
       return (
         <GameBoard
           key={i} 
-          selectedValues={boardAnswer} 
+          selectedValues={boardAnswer}
           active={i === this.state.gameBoards.length - 1} 
           updateValue={this.updateValue}
-          focused={this.state.focused}
+          activeDraggable={this.state.activeDraggable}
         />
       )
     })  
@@ -110,7 +110,7 @@ class Game extends Component {
 
   handleFocus = (x, y, color) => {
     console.log(x, y)
-    this.setState({focused: {x, y, color}})
+    this.setState({activeDraggable: {x, y, color}})
   }
 
   render() {

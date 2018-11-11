@@ -13,9 +13,12 @@
         cursor: pointer;
         box-shadow: 10px 10px 30px #353535;
     }
+}
 
-    &:active {
-        // height: 125px;
-        // width: 125px;
-    }
+
+.gameboard-colorbox-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 50px;
 }
