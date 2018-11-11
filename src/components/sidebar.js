@@ -37,13 +37,13 @@ class Sidebar extends Component {
     ]
 
     return colorOptions.map(box =>  {
-      return <ColorBox  
-          key={box.name} 
-          name={box.name} 
+      return <ColorBox
+          key={box.name}
+          name={box.name}
           id={box.name}
           color={box.color}
           width={'100px'}
-          callback={this.props.callback}
+          onDrop={this.props.onDrop}
           sidebar={true}
         />
     })
