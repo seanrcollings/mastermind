@@ -6,14 +6,17 @@ class GameBoard extends Component {
   renderColorBoxes = () => {
     return Object.keys(this.props.selectedValues).map(key => {
       return (
-        <ColorBox 
-          name={key}
-          key={key} 
-          color={this.props.selectedValues[key]} 
-          updateValue={this.props.updateValue}  
-          activeDraggable={this.props.activeDraggable}
-          width='150px'
-        />
+        <div className="gameboard-colorbox-background">
+          <ColorBox
+            name={key}
+            key={key}
+            color={this.props.selectedValues[key]}
+            updateValue={this.props.updateValue}
+            activeDraggable={this.props.activeDraggable}
+            width='150px'
+            onDrop={this.props.onDrop}
+          />
+        </div>
       )
     })
   }

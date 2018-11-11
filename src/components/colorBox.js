@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable'
 
 class ColorBox extends Component {
+  dropMargin = 200;
+
   constructor(props) {
     super(props)
-    this.colorBox = React.createRef() 
+    this.colorBox = React.createRef()
     this.state = {
       beingDragged: false
     }
@@ -12,13 +14,14 @@ class ColorBox extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.sidebar) {
-      return 
+      return
     }
-    const {x, y} = this.colorBox.current.getBoundingClientRect()
-    if (Math.abs(nextProps.activeDraggable.x - x) < 200 || Math.abs(x - nextProps.activeDraggable.x) < 200 ) {
-      if (Math.abs(nextProps.activeDraggable.y - y) < 200 || Math.abs(y - nextProps.activeDraggable.y) < 200 ) {
-        nextProps.updateValue(nextProps.name, nextProps.activeDraggable.color)
-      }
+    const { x, y } = this.colorBox.current.getBoundingClientRect()
+    const withinX = Math.abs(nextProps.activeDraggable.x - x) < this.dropMargin || Math.abs(x - nextProps.activeDraggable.x) < this.dropMargin;
+    const withinY = Math.abs(nextProps.activeDraggable.y - y) < this.dropMargin || Math.abs(y - nextProps.activeDraggable.y) < this.dropMargin;
+
+    if (withinX && withinY && nextProps.activeDraggable.name !== nextProps.name) {
+      nextProps.updateValue(nextProps.name, nextProps.activeDraggable.color)
     }
   }
 
@@ -31,9 +34,13 @@ class ColorBox extends Component {
     event.stopPropagation();
     const focusedBox = this.colorBox.current.getBoundingClientRect()
     this.setState({beingDragged: false})
-    this.props.callback(focusedBox.x, focusedBox.y, this.props.color)
+    if(this.props.sidebar) {
+      this.props.onDrop(focusedBox.x, focusedBox.y, this.props.color)
+    } else {
+      this.props.onDrop(focusedBox.x, focusedBox.y, this.props.color, this.props.name)
+    }
   };
-  
+
   render() {
     let boxStyles = {
       backgroundColor: this.props.color,
@@ -43,10 +50,10 @@ class ColorBox extends Component {
       position: 'relative'
     }
     return (
-      <Draggable disabled = {!this.props.sidebar} position={{x: 0, y: 0}} onStart={this.onStart} onStop={this.onStop}>
-        <div 
-          ref={this.colorBox} 
-          className={'colorbox'} 
+      <Draggable position={{x: 0, y: 0}} onStart={this.onStart} onStop={this.onStop}>
+        <div
+          ref={this.colorBox}
+          className={'colorbox'}
           style={boxStyles}>
         </div>
       </Draggable>

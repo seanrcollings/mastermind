@@ -42,6 +42,9 @@ class Game extends Component {
   updateValue = (key, value) => {
     let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1]};
     newActiveBoard[key] = value;
+    if(this.state.activeDraggable.name && this.state.activeDraggable.name !== key) {
+      newActiveBoard[this.state.activeDraggable.name] = "white";
+    }
     let newBoards = [...this.state.gameBoards];
     newBoards[newBoards.length-1] = newActiveBoard;
     this.setState({gameBoards: newBoards, activeDraggable: this.defaultDraggable});
@@ -103,14 +106,14 @@ class Game extends Component {
           active={i === this.state.gameBoards.length - 1} 
           updateValue={this.updateValue}
           activeDraggable={this.state.activeDraggable}
+          onDrop={this.onDrop}
         />
       )
     })  
   } 
 
-  handleFocus = (x, y, color) => {
-    console.log(x, y)
-    this.setState({activeDraggable: {x, y, color}})
+  onDrop = (x, y, color, name) => {
+    this.setState({activeDraggable: {x, y, color, name}})
   }
 
   render() {
@@ -118,7 +121,7 @@ class Game extends Component {
       <div className="game">
 
         <div className='game__sidebar'>
-          <Sidebar callback = {this.handleFocus}/>
+          <Sidebar onDrop={this.onDrop}/>
         </div>
 
         <div className="game__colorboard">
