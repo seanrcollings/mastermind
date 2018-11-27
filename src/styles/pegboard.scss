@@ -3,7 +3,7 @@
     grid-template-columns: [white-s] 1fr [white-e black-s] 1fr [black-e];
  
     &__title {
-        color: grey;
+        color: white;
         padding: 5px;
         font-weight: bold;
     }
@@ -27,7 +27,8 @@
         height: 25px;
         
         &-empty {
-            box-shadow: 1px 1px 5px #555 inset;
+            box-shadow: 1px 1px 5px #353535  inset;
+            background-color: #c1c1c1
         }
         
         &-white {
@@ -39,3 +40,5 @@
         }
     }
 }
+
+

@@ -2,31 +2,74 @@
     display: grid;
     grid-template-columns: [s sidebar-s] .1fr [sidebar-e colorboard-s] 1fr [colorboard-e pegboard-s] .3fr [pegboard-e e];
     grid-template-rows: 1fr;
+    grid-column-gap: 20px;
     height: 100vh;
 
+    &__header {
+      grid-column: s/e;
+      height: 13vh;
+    }
+
     &__sidebar {
-      background-color: black;
       grid-column: sidebar-s/sidebar-e;
+      height: 87vh;
+      margin-left: 20px;
     }
 
     &__colorboard {
-        background-color: blueviolet;
-        grid-column: colorboard-s/colorboard-e;
         overflow: auto;
+        grid-column: colorboard-s/colorboard-e;
+        border-radius: 5px;
+        background-color: #4d4d4d;
+        height: 81vh;
       }
     
     &__pegboard {
-      background-color: powderblue;
-      grid-column: pegboard-s/pegboard-e
+      grid-column: pegboard-s/pegboard-e;
+      border-radius: 5px;
+      background-color: #75aa28;
+      margin-right: 20px;
+      height: 81vh;
+    }
+
+    &__submit {
+        margin-left: 1200px;
+        margin-bottom: 20px;
+        border: none;
+        background-color: #75aa28;
+        color: white;
+        height: 50px;
+        width: 100px;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+
+        &:hover {
+            cursor: pointer;
+            color: #4d4d4d;
+        }
     }
 }
 
 
 
-.box-in-play {
-  background-color: white;
-  margin: 40px;
-  display: inline-block;
-  margin-left: 120px;
-  z-index: 1000;
+.header {
+  height: 100px;
+  background-color: #4d4d4d;
+  padding-left: 10px; 
+
+  &__title {
+    font-weight: bold;
+    color: white
+  }
+
+  &__subtitle {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    padding: 10px;
+  }
 }
+
+
+

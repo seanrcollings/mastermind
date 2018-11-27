@@ -15,16 +15,27 @@
     }
 }
 
-
-.gameboard-colorbox-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 50px;
+.gameboard-colorbox {
+    &-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 50px;
+    }
+    
+    &-background {
+        width: 150px;
+        height: 150px;
+        background-color: white;
+        border-radius: 5%;
+    }
 }
 
-.gameboard-colorbox-background {
-    width: 150px;
-    height: 150px;
-    background-color: white;
-}
+
+.box-in-play {
+    background-color: #4d4d4d;
+    margin: 40px;
+    display: inline-block;
+    margin-left: 120px;
+    z-index: 1000;
+  }

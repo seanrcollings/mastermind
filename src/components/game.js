@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GameBoard from './gameboard';
 import Pegboard from './pegboard';
 import Sidebar from './sidebar';
+import Header from './header';
 
 class Game extends Component {
   defaultGameBoard = {
@@ -21,12 +22,7 @@ class Game extends Component {
     super(props);
     
     this.state = {
-      answer : {
-        answerValue1: 'blue',
-        answerValue2: 'orange', 
-        answerValue3: 'blue', 
-        answerValue4: 'yellow'
-      },
+      answer : this.genAnswer(),
       gameBoards: [this.defaultGameBoard],
       results: [],
       activeDraggable: this.defaultDraggable
@@ -42,7 +38,7 @@ class Game extends Component {
   updateValue = (key, value) => {
     let newActiveBoard = { ...this.state.gameBoards[this.state.gameBoards.length-1]};
     newActiveBoard[key] = value;
-    if(this.state.activeDraggable.name && this.state.activeDraggable.name !== key) {
+    if (this.state.activeDraggable.name && this.state.activeDraggable.name !== key) {
       newActiveBoard[this.state.activeDraggable.name] = "white";
     }
     let newBoards = [...this.state.gameBoards];
@@ -119,14 +115,18 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
-
+      <div className='game__header'>
+        <Header/>
+      </div>
         <div className='game__sidebar'>
           <Sidebar onDrop={this.onDrop}/>
         </div>
 
         <div className="game__colorboard">
           {this.renderGameBoards()}
-          <button onClick = {this.checkAnswer}>Submit</button>
+          <button className = 'game__submit' onClick = {this.checkAnswer}>Submit</button>
+          <div className = 'clip-path-mastermind'></div>
+          <div className = 'clip-path-mastermind-border'></div>
         </div>
 
         <div className="game__pegboard">
