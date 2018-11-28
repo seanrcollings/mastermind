@@ -17,14 +17,15 @@
     }
 
     &__colorboard {
-        overflow: auto;
-        grid-column: colorboard-s/colorboard-e;
-        border-radius: 5px;
-        background-color: #4d4d4d;
-        height: 81vh;
-      }
+      overflow: auto;
+      grid-column: colorboard-s/colorboard-e;
+      border-radius: 5px;
+      background-color: #4d4d4d;
+      height: 81vh;
+    }
     
     &__pegboard {
+      overflow: hidden;
       grid-column: pegboard-s/pegboard-e;
       border-radius: 5px;
       background-color: #75aa28;
@@ -33,21 +34,21 @@
     }
 
     &__submit {
-        margin-left: 1200px;
-        margin-bottom: 20px;
-        border: none;
-        background-color: #75aa28;
-        color: white;
-        height: 50px;
-        width: 100px;
-        border-radius: 5px;
-        font-size: 20px;
-        font-weight: bold;
+      margin-left: 1200px;
+      margin-bottom: 20px;
+      border: none;
+      background-color: #75aa28;
+      color: white;
+      height: 50px;
+      width: 100px;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: bold;
 
-        &:hover {
-            cursor: pointer;
-            color: #4d4d4d;
-        }
+      &:hover {
+          cursor: pointer;
+          color: #4d4d4d;
+      }
     }
 }
 

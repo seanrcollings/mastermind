@@ -1,6 +1,8 @@
 .pegboard {
     display: grid;
-    grid-template-columns: [white-s] 1fr [white-e black-s] 1fr [black-e];
+    overflow: auto;
+    grid-template-columns: [white-s] 1fr [white-e divider-s] .01fr [divider-e black-s] 1fr [black-e];
+    grid-template-rows: 1fr;
  
     &__title {
         color: white;
@@ -15,12 +17,20 @@
     &__black {
         grid-column: black-s/black-e
     }
+
+    &__divider {
+        display: inline-block;
+        grid-column: divider-s/divider-e;
+        grid-row: 1/-1;
+        color: white;
+    }
 } 
 
 
 .pegrow {
+
     &__peg {
-        display: inline-block; 
+        display: inline-flex;
         margin: 10px;
         border-radius: 3px;
         width: 25px;

@@ -46,7 +46,6 @@ class Pegboard extends Component {
             </div>
           </div>
         </div>
-        
         <div className = 'pegboard__black'>
           <h4 className ='pegboard__title'>BLACK PEGS</h4>
           <div className = 'pegboard__black-pegs'>

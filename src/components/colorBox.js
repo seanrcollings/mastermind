@@ -26,7 +26,11 @@ class ColorBox extends Component {
   }
 
   onStart = () => {
-    this.setState({beingDragged: true})
+    if (this.props.answer) {
+      return false
+    } else {
+      this.setState({beingDragged: true})
+    }
   }
 
   onStop = (event) => {
@@ -48,7 +52,7 @@ class ColorBox extends Component {
       height: this.props.width,
       zIndex: this.state.beingDragged ? 100 : 0,
       position: 'relative',
-      borderRadius: '5%',
+      borderRadius: '10px',
       marginBottom: this.props.sidebar ? '10px': ''
     }
     return (

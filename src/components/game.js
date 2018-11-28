@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import GameEndModal from './gameEndModal';
 import GameBoard from './gameboard';
 import Pegboard from './pegboard';
 import Sidebar from './sidebar';
 import Header from './header';
+
 
 class Game extends Component {
   defaultGameBoard = {
@@ -25,14 +27,29 @@ class Game extends Component {
       answer : this.genAnswer(),
       gameBoards: [this.defaultGameBoard],
       results: [],
-      activeDraggable: this.defaultDraggable
+      activeDraggable: this.defaultDraggable,
+      turn: 0,
+      showEndScreen: false,
+      win: null
     }
   }
   
   /* HELPERS */
 
-  nextTurn = () => {
-    this.setState({gameBoards: [...this.state.gameBoards, this.defaultGameBoard]})
+  nextTurn = () => { 
+    this.setState({gameBoards: [...this.state.gameBoards, this.defaultGameBoard], turn: this.state.turn + 1}, () => {
+      if (this.state.results[this.state.results.length - 1].blackPegs === 4) {
+        this.setState({showEndScreen: true, win: true})
+      }
+      else if (this.state.turn === 12) {
+        this.setState({showEndScreen: true, win: false})
+      }
+    })
+  }
+  
+
+  resetGame = () => {
+    this.setState({answer: this.genAnswer(), gameBoards: [this.defaultGameBoard], results: [], turn: 0, showEndScreen: false, win: null}) // add a default state variable and throw all this in there
   }
 
   updateValue = (key, value) => {
@@ -80,15 +97,11 @@ class Game extends Component {
         }
       }
     }
-    this.setState({results: [...this.state.results, {blackPegs, whitePegs}]}, 
-      () => {
-        if (blackPegs >= 4) {
-          alert('You won!')
-        } else {
-          this.nextTurn()
-        }
-      }
-    )
+    this.setState({results: [...this.state.results, {blackPegs, whitePegs}]}, () => {this.nextTurn()})
+  }
+
+  onDrop = (x, y, color, name) => {
+    this.setState({activeDraggable: {x, y, color, name}})
   }
 
   /* RENDERERS */
@@ -108,16 +121,14 @@ class Game extends Component {
     })  
   } 
 
-  onDrop = (x, y, color, name) => {
-    this.setState({activeDraggable: {x, y, color, name}})
-  }
+  
 
   render() {
     return (
       <div className="game">
-      <div className='game__header'>
-        <Header/>
-      </div>
+        <div className='game__header'>
+          <Header/>
+        </div>
         <div className='game__sidebar'>
           <Sidebar onDrop={this.onDrop}/>
         </div>
@@ -133,7 +144,13 @@ class Game extends Component {
           <Pegboard 
             results={this.state.results}
           />
-          </div>
+        </div>
+        <GameEndModal
+          show = {this.state.showEndScreen}
+          win = {this.state.win}
+          resetGame = {this.resetGame}
+          answer = {this.state.answer}
+        />
       </div>
     );
   }
