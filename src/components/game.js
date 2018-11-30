@@ -28,7 +28,7 @@ class Game extends Component {
       gameBoards: [this.defaultGameBoard],
       results: [],
       activeDraggable: this.defaultDraggable,
-      turn: 0,
+      turn: 0, // tell the player how many turns they have left somewhere
       showEndScreen: false,
       win: null
     }
@@ -41,7 +41,7 @@ class Game extends Component {
       if (this.state.results[this.state.results.length - 1].blackPegs === 4) {
         this.setState({showEndScreen: true, win: true})
       }
-      else if (this.state.turn === 1) {
+      else if (this.state.turn === 12) { 
         this.setState({showEndScreen: true, win: false})
       }
     })
