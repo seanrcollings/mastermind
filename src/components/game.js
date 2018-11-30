@@ -41,7 +41,7 @@ class Game extends Component {
       if (this.state.results[this.state.results.length - 1].blackPegs === 4) {
         this.setState({showEndScreen: true, win: true})
       }
-      else if (this.state.turn === 12) {
+      else if (this.state.turn === 1) {
         this.setState({showEndScreen: true, win: false})
       }
     })
