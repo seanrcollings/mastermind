@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable'
 
 class ColorBox extends Component {
-  dropMargin = 200;
+  dropMargin = 150;
 
   constructor(props) {
     super(props)

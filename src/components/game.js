@@ -90,7 +90,7 @@ class Game extends Component {
     // Adds whitePegs
     for (let guessindex = 0; guessindex < guess.length; guessindex++) {
       for (let answerindex = 0; answerindex < 4; answerindex++) {
-        if (answer[answerindex] === guess[guessindex] && pegs[answerindex] === null) {
+        if (answer[answerindex] === guess[guessindex] && pegs[guessindex] === null) {
           whitePegs++;
           pegs[answerindex] = 'white'
           break;
