@@ -1,7 +1,6 @@
 .game {
     display: grid;
     grid-template-columns: [s sidebar-s] .1fr [sidebar-e colorboard-s] 1fr [colorboard-e pegboard-s] .3fr [pegboard-e e];
-    grid-template-rows: 1fr;
     grid-column-gap: 20px;
     height: 100vh;
 

@@ -55,7 +55,7 @@ class GameEndModal extends Component {
             {this.renderAnswer()}
           </div>
           <div className = 'modal__main-buttons'>
-            <button className = 'modal__main-buttons-button'>Main Page</button>
+            <a href = '/'><button className = 'modal__main-buttons-button'>Main Page</button></a>
             <button className = 'modal__main-buttons-button' onClick={this.props.resetGame}>Play Again?</button>
           </div>
         </div>
