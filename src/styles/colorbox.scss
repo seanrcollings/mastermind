@@ -16,11 +16,11 @@
 }
 
 .gameboard-colorbox {
-    &-wrapper {
+    &__wrapper {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin: 50px;
+        height: 150px;
+        justify-content: space-evenly;
+        padding: 35px;
     }
     
     &-background {

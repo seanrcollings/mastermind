@@ -129,28 +129,30 @@ class Game extends Component {
         <div className='game__header'>
           <Header/>
         </div>
-        <div className='game__sidebar'>
-          <Sidebar onDrop={this.onDrop}/>
-        </div>
+        <div className='gameboard-wrapper'>
+          <div className='gameboard-wrapper__sidebar'>
+            <Sidebar onDrop={this.onDrop}/>
+          </div>
 
-        <div className="game__colorboard">
-          {this.renderGameBoards()}
-          <button className = 'game__submit' onClick = {this.checkAnswer}>Submit</button>
-          <div className = 'clip-path-mastermind'></div>
-          <div className = 'clip-path-mastermind-border'></div>
-        </div>
+          <div className="gameboard-wrapper__colorboard">
+            {this.renderGameBoards()}
+            <button className = 'gameboard-wrapper__submit' onClick = {this.checkAnswer}>Submit</button>
+            <div className = 'clip-path-mastermind'></div>
+            <div className = 'clip-path-mastermind-border'></div>
+          </div>
 
-        <div className="game__pegboard">
-          <Pegboard 
-            results={this.state.results}
-          />
+          <div className="gameboard-wrapper__pegboard">
+            <Pegboard 
+              results={this.state.results}
+              />
+          </div>
         </div>
         <GameEndModal
           show = {this.state.showEndScreen}
           win = {this.state.win}
           resetGame = {this.resetGame}
           answer = {this.state.answer}
-        />
+          />
       </div>
     );
   }

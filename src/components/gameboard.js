@@ -22,7 +22,7 @@ class GameBoard extends Component {
   }
   render() {
     return (
-      <div className = 'gameboard-colorbox-wrapper'> 
+      <div className = 'gameboard-colorbox__wrapper'> 
         {this.renderColorBoxes()}
       </div>
     );
