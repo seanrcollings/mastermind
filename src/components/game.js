@@ -24,7 +24,7 @@ class Game extends Component {
     super(props);
     
     this.state = {
-      answer : {answerValue1: 'blue', answerValue2: 'orange', answerValue3: 'blue', answerValue4: 'green'},
+      answer : this.genAnswer(),
       gameBoards: [this.defaultGameBoard],
       results: [],
       activeDraggable: this.defaultDraggable,
